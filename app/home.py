@@ -1,6 +1,7 @@
 # import dependencies
 import streamlit as st
 from PIL import Image
+from streamlit_extras.switch_page_button import switch_page
 
 
 # set page config
@@ -9,6 +10,7 @@ st.set_page_config(
     layout="wide"
 )
 
+# set page layout
 col1, col2, col3 = st.columns([3,2,1])
 
 with col1:
@@ -26,4 +28,7 @@ with col2:
 
 
 with col3:
-  st.button(label="Log in")
+  log_in = st.button("Log In")
+  if log_in:
+    switch_page("Login")
+
