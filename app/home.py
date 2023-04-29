@@ -31,4 +31,3 @@ with col3:
   log_in = st.button("Log In")
   if log_in:
     switch_page("Login")
-
