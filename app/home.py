@@ -3,7 +3,6 @@ import streamlit as st
 from PIL import Image
 from streamlit_extras.switch_page_button import switch_page
 
-
 # set page config
 st.set_page_config(
     page_title="Ellie - Smart Attendance",
@@ -19,23 +18,30 @@ def reset():
 
 # login form
 def new_signin():
-    st.session_state.click = True
-    admin_email = "admin@gmail.com"
-    admin_password = "admin123"
+  st.session_state.click = True
 
-    with st.form(key="signin"):
-        email = st.text_input("Email")
-        password = st.text_input("Password", type='password')
-        submit = st.form_submit_button("Login")
+  #names = ["Karen Jin", "Fiona Green"]
+  usernames = ["karen.jin@admin.com", "fiona.green@teacher.com"]
+  passwords = ["admin123", "teacher456"]
 
-    if submit and email == admin_email and password == admin_password:
-        st.session_state.admin = True
-        switch_page("Admin")
 
+  with st.form(key="signin"):
+    email = st.text_input("Email")
+    password = st.text_input("Password", type='password')
+    submit = st.form_submit_button("Login")
+
+  if submit and email == usernames[0] and password == passwords[0]:
+    st.session_state.admin = True
+    switch_page("Admin")
+  elif submit and email == usernames[1] and password == passwords[1]:
+    st.session_state.teacher = True
+    switch_page("Teacher")
+  elif submit and email != usernames[0] and password !=passwords[0]:
+    st.warning("Email/password incorrect")
+    
 
 if not st.session_state.click:
   # show homepage content
-
   # set page layout
   col1, col2, col3 = st.columns([3,2,1])
 
